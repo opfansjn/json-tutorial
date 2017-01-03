@@ -93,14 +93,15 @@ static int lept_parse_number(lept_context* c ,lept_value* v){
 		if(!IS1TO9(*p)) return LEPT_PARSE_INVALID_VALUE;
 		for(p++;ISDIG(*p);p++);
 	}	
-	if(*p == '.') p++;
-	else{
+	if(*p == '.'){
+		p++;
 		if(!ISDIG(*p)) return LEPT_PARSE_INVALID_VALUE;
 		for(p++;ISDIG(*p); p++);
 
 	}
-	if(*p== 'e' || *p=='E') p++;
-	else{
+	if(*p== 'e' || *p=='E'){
+		p++;
+		if(*p == '+' || *p == '-')p++;
 		if(!ISDIG(*p)) return LEPT_PARSE_INVALID_VALUE;
 		for(p++;ISDIG(*p);p++);
 	}
